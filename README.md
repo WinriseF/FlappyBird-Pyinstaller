@@ -1,3 +1,9 @@
+The original code is https://github.com/sourabhv/FlapPyBird
+
+>Since the original code cannot be packaged directly through pyinstaller, there will be image missing problems, so we have changed the original code and can directly generate a complete exe file through pyinstaller after installing the necessary packages.
+
+>You can generate an executable file directly through <pyinstaller --onefile --add-data "assets/sprites;assets/sprites" --add-data "assets/audio;assets/audio" main.py>
+
 [FlapPyBird](https://sourabhv.github.io/FlapPyBird)
 ===============
 
