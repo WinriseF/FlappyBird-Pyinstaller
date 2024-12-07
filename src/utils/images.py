@@ -1,9 +1,15 @@
 import random
 from typing import List, Tuple
-
+import os
+import sys
 import pygame
 
 from .constants import BACKGROUNDS, PIPES, PLAYERS
+
+def get_resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):    # 当应用打包成exe时，使用 _MEIPASS 路径
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 
 class Images:
@@ -18,21 +24,22 @@ class Images:
     def __init__(self) -> None:
         self.numbers = list(
             (
-                pygame.image.load(f"assets/sprites/{num}.png").convert_alpha()
+                #pygame.image.load(f"assets/sprites/{num}.png").convert_alpha()
+                pygame.image.load(get_resource_path(f"assets/sprites/{num}.png")).convert_alpha()
                 for num in range(10)
             )
         )
 
         # game over sprite
         self.game_over = pygame.image.load(
-            "assets/sprites/gameover.png"
+            get_resource_path("assets/sprites/gameover.png")
         ).convert_alpha()
         # welcome_message sprite for welcome screen
         self.welcome_message = pygame.image.load(
-            "assets/sprites/message.png"
+            get_resource_path("assets/sprites/message.png")
         ).convert_alpha()
         # base (ground) sprite
-        self.base = pygame.image.load("assets/sprites/base.png").convert_alpha()
+        self.base = pygame.image.load(get_resource_path("assets/sprites/base.png")).convert_alpha()
         self.randomize()
 
     def randomize(self):
